@@ -1,0 +1,38 @@
+{
+  "name": "busca-automatizada",
+  "homepage": "./src/frontend/build",
+  "version": "1.2.1",
+  "description": "Busca Automatizada",
+  "main": "./src/core/index.js",
+  "scripts": {
+    "start": "electron ./src/core",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder build"
+  },
+  "keywords": [],
+  "author": {
+    "name": "Lucas Almeida",
+    "url": "https://github.com/luccasja"
+  },
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^15.3.1",
+    "electron-builder": "^22.3.6"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "nodemailer": "^6.7.1",
+    "playwright": "^1.16.3"
+  },
+  "build": {
+    "appId": "com.buscaAutomatizada",
+    "productName": "Busca Automatizada",
+    "win": {
+      "asar": false,
+      "target": "nsis",
+      "icon": "src/img/icon.png"
+    }
+  }
+}

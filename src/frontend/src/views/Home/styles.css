@@ -1,0 +1,25 @@
+#container-home{
+    margin-top: 55px;
+    height: auto;
+    background-color: #FFF;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 25px;
+}
+
+.container-btn-actions{
+    display: flex;
+    flex-direction: row;
+}
+
+.container-btn-actions button{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.inputs{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}

@@ -1,0 +1,83 @@
+{
+    "urlMotor": "http://20.206.129.110/detran?token=55her75hnert99273alsf0017&tipo=motor&dados=",
+    "urlChassi": "http://20.206.129.110/detran?token=55her75hnert99273alsf0017&tipo=chassi&dados=",
+    "alvo": "placa= |situacao=SEM_PRIMEIRO_EMPLACAMENTO",
+    "templates": [
+        {
+            "ativo": true,
+            "formato": "JSON",
+            "campos": [
+                {
+                    "nome": "chassi",
+                    "valor": "msg|resultado|chassi"
+                },
+                {
+                    "nome": "motor",
+                    "valor": "msg|resultado|numeroMotor"
+                },
+                {
+                    "nome": "placa",
+                    "valor": "msg|resultado|placa"
+                },
+                {
+                    "nome": "renavam",
+                    "valor": "msg|resultado|renavam"
+                },
+                {
+                    "nome": "anoFabricacao",
+                    "valor": "msg|resultado|anoFabricacao"
+                },
+                {
+                    "nome": "anoModelo",
+                    "valor": "msg|resultado|anoModelo"
+                },
+                {
+                    "nome": "marcaModeloDescricao",
+                    "valor": "msg|resultado|marcaModeloDescricao"
+                },
+                {
+                    "nome": "situacao",
+                    "valor": "msg|resultado|situacaoVeiculo"
+                }
+            ]
+        },
+        {
+            "ativo": false,
+            "formato": "HTML",
+            "campos": [
+                {
+                    "nome": "chassi",
+                    "valor": "//html/body/text()[2]"
+                },
+                {
+                    "nome": "motor",
+                    "valor": "//html/body/text()[14]"
+                },
+                {
+                    "nome": "placa",
+                    "valor": "//html/body/text()"
+                },
+                {
+                    "nome": "renavam",
+                    "valor": "//html/body/text()[7]"
+                },
+                {
+                    "nome": "anoFabricacao",
+                    "valor": ""
+                },
+                {
+                    "nome": "anoModelo",
+                    "valor": ""
+                },
+                {
+                    "nome": "marcaModeloDescricao",
+                    "valor": ""
+                },
+                {
+                    "nome": "situacao",
+                    "valor": "//html/body/text()[18]"
+                }
+            ]
+        }
+    ]
+}
