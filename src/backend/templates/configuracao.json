@@ -1,10 +1,10 @@
 {
-    "urlMotor": "http://20.206.129.110/detran?token=55her75hnert99273alsf0017&tipo=motor&dados=",
-    "urlChassi": "http://20.206.129.110/detran?token=55her75hnert99273alsf0017&tipo=chassi&dados=",
-    "alvo": "placa= |situacao=SEM_PRIMEIRO_EMPLACAMENTO",
+    "urlMotor": "http://server3.trackear.com.br/v1/rick/motor/",
+    "urlChassi": "http://server3.trackear.com.br/v1/rick/chassi/",
+    "alvo": "placa= |situacao=S/1 EMPLAC",
     "templates": [
         {
-            "ativo": true,
+            "ativo": false,
             "formato": "JSON",
             "campos": [
                 {
@@ -42,40 +42,40 @@
             ]
         },
         {
-            "ativo": false,
+            "ativo": true,
             "formato": "HTML",
             "campos": [
                 {
                     "nome": "chassi",
-                    "valor": "//html/body/text()[2]"
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(3) > tbody > tr > td:nth-child(4)"
                 },
                 {
                     "nome": "motor",
-                    "valor": "//html/body/text()[14]"
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(13) > tbody > tr > td:nth-child(4)"
                 },
                 {
                     "nome": "placa",
-                    "valor": "//html/body/text()"
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(3) > tbody > tr > td:nth-child(2)"
                 },
                 {
                     "nome": "renavam",
-                    "valor": "//html/body/text()[7]"
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(3) > tbody > tr > td:nth-child(6)"
                 },
                 {
                     "nome": "anoFabricacao",
-                    "valor": ""
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(9) > tbody > tr > td:nth-child(8)"
                 },
                 {
                     "nome": "anoModelo",
-                    "valor": ""
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(9) > tbody > tr > td:nth-child(6)"
                 },
                 {
                     "nome": "marcaModeloDescricao",
-                    "valor": ""
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(9) > tbody > tr > td:nth-child(4)"
                 },
                 {
                     "nome": "situacao",
-                    "valor": "//html/body/text()[18]"
+                    "valor": "body > form > table:nth-child(4) > tbody > tr > td > table:nth-child(3) > tbody > tr > td:nth-child(8)"
                 }
             ]
         }

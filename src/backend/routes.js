@@ -49,10 +49,8 @@ routes.get('/ConsultarVeiculos/chassi/:pchassi', async (req, resp) => {
 routes.get('/templates', (req, resp) => {
 
     try {
-
         let template = JSON.parse(fs.readFileSync(__dirname + '/templates/configuracao.json', 'utf-8'));
         resp.status(200).send(template);
-
     } catch (error) {
         resp.status(404).send({ erro: "Arquivo de configuração não encontrada!" })
     }
@@ -64,12 +62,9 @@ routes.post('/templetes', (req, resp) => {
 
     if (listaDeTemplates === undefined || listaDeTemplates.length === 0)
         return resp.status(404).send({ erro: "Lista de configurações vazia" });
-
     try {
-
         fs.writeFileSync(__dirname + '/templates/configuracao.json', JSON.stringify(listaDeTemplates, null, 4), 'utf-8');
         resp.status(200).send({ Ok: "Configurações salvas com sucesso!" });
-
     } catch (error) {
         resp.status(404).send({ erro: "Falha ao salvar configurações:" + erro.message })
     }
@@ -78,10 +73,8 @@ routes.post('/templetes', (req, resp) => {
 
 routes.get('/resultados', (req, resp) => {
     try {
-
         let dados = JSON.parse(fs.readFileSync(__dirname + '/data/data.json', 'utf-8'));
         resp.status(200).send(dados);
-
     } catch (error) {
         resp.status(404).send({ erro: "Arquivo de dados não encontrado!" })
     }
@@ -89,14 +82,12 @@ routes.get('/resultados', (req, resp) => {
 
 function gravarResultado(resultado) {
     try {
-
         let dados = JSON.parse(fs.readFileSync(__dirname + '/data/data.json', 'utf-8'));
         if (dados === undefined) dados = [];
         dados.push(resultado);
 
         fs.writeFileSync(__dirname + '/data/data.json', JSON.stringify(dados, null, 4), 'utf-8');
         return true;
-
     } catch (error) {
         console.log(error.message);
         return false;
@@ -105,10 +96,8 @@ function gravarResultado(resultado) {
 
 routes.delete('/resultados', (req, resp) => {
     try {
-
         fs.writeFileSync(__dirname + '/data/data.json', "[]", 'utf-8');
         resp.status(200).send({ Ok: "Dados removidos com sucesso!" });
-
     } catch (error) {
         resp.status(404).send({ erro: "Falha ao remover registros!" })
     }
@@ -119,16 +108,13 @@ routes.post('/resultados', (req, resp) => {
 
     if (resultado === undefined)
         resp.status(404).send({ erro: "Os dados não podem ser vazios!" });
-
     try {
-
         let dados = JSON.parse(fs.readFileSync(__dirname + '/data/data.json', 'utf-8'));
         if (dados === undefined) dados = [];
         dados.push(resultado);
 
         fs.writeFileSync(__dirname + '/data/data.json', JSON.stringify(dados, null, 4), 'utf-8');
         resp.status(200).send({ Ok: "Resultado gravado com sucesso!" });
-
     } catch (error) {
         resp.status(404).send({ erro: "Falha ao gravar resultado!" })
     }
@@ -177,7 +163,7 @@ async function buscarNoFormatoHtml(req, resp, tipoDeBusca, configuracao) {
     }
     else {
         const { pchassi } = req.params;
-        let resultado = await obterResultado(page, configuracao, `${configuracao.urlMotor + pchassi}`, pchassi);
+        let resultado = await obterResultado(page, configuracao, `${configuracao.urlChassi + pchassi}`, pchassi);
 
         await browser.close();
         return resp.status(200).send(resultado);
@@ -405,19 +391,19 @@ async function obterResultado(page, configuracao, rota, parametro) {
         if (campoSituacao !== "")
             situacao = await (await page.waitForSelector(campoSituacao)).textContent();
 
-        let campoAnoModelo = String(obterValorDoCampo(campos, "anoModelo")).trim();
+        let campoAnoModelo = String(await obterValorDoCampo(campos, "anoModelo")).trim();
         if (campoAnoModelo !== "")
             anoModelo = await (await page.waitForSelector(campoAnoModelo)).textContent();
 
-        let campoAnoFabricacao = String(obterValorDoCampo(campos, "anoFabricacao")).trim();
+        let campoAnoFabricacao = String(await obterValorDoCampo(campos, "anoFabricacao")).trim();
         if (campoAnoFabricacao !== "")
             anoFabricacao = await (await page.waitForSelector(campoAnoFabricacao)).textContent();
 
-        let campoMarcaOuModelo = String(obterValorDoCampo(campos, "marcaModeloDescricao")).trim();
+        let campoMarcaOuModelo = String(await obterValorDoCampo(campos, "marcaModeloDescricao")).trim();
         if (campoMarcaOuModelo !== "")
             marcaModeloDescricao = await (await page.waitForSelector(campoMarcaOuModelo)).textContent();
 
-        let campoMotor = String(obterValorDoCampo(campos, "motor")).trim();
+        let campoMotor = String(await obterValorDoCampo(campos, "motor")).trim();
         if (campoMotor !== "")
             motor = await (await page.waitForSelector(campoMotor)).textContent();
 
@@ -430,7 +416,7 @@ async function obterResultado(page, configuracao, rota, parametro) {
             condicaoBusca: parametro, alvo
         };
 
-        resultado.alvo = veiculoEhAlvo(resultado, configuracao)
+        resultado.alvo = await veiculoEhAlvo(resultado, configuracao)
 
         if (resultado.alvo) {
             gravarResultado({

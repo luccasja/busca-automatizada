@@ -8,7 +8,7 @@ process.on('uncaughtException', function(erro) {
     if(erro.code === 'EADDRINUSE')
          console.log("Porta 3000 em uso");
     else
-         console.log(err);
+         console.log(erro);
 });
 
 app.use(cors())
