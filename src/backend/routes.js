@@ -179,8 +179,13 @@ async function buscarNoFormatoJson(req, resp, tipoDeBusca, configuracao) {
         Api.get(configuracao.urlMotor + pmotor)
             .then(async resposta => {
                 if (resposta.status === 200) {
-
                     let resultado = await extrairResultado(configuracao, resposta.data, pmotor)
+
+                    if(resposta.data.dados && resposta.data.dados.status){
+                        if(resposta.data.dados.status == "ERROR" && resposta.data.dados.retorno){
+                            resultado.chassi = resposta.data.dados.retorno;
+                        }
+                    }
 
                     if (resultado.alvo) {
                         gravarResultado({
@@ -255,8 +260,6 @@ async function buscarNoFormatoJson(req, resp, tipoDeBusca, configuracao) {
 async function extrairResultado(configuracao, resposta, condicaoBusca) {
     return await new Promise(async (resolve, reject) => {
         try {
-
-
             const campos = configuracao.configAtiva.campos;
 
             let situacao, renavam, placa, motor, chassi, dataBusca, alvo, anoFabricacao, anoModelo, marcaModeloDescricao;
@@ -294,6 +297,9 @@ async function extrairResultado(configuracao, resposta, condicaoBusca) {
 
             resultado.alvo = await veiculoEhAlvo(resultado, configuracao);
 
+            if(!resultado.chassi && !resultado.motor)
+                resultado.chassi = "Sem resultado ou não consta na base!";
+
             resolve(resultado);
             
         } catch (erro) {
@@ -320,8 +326,13 @@ async function veiculoEhAlvo(resultado, configuracao) {
             let campo = condicao.split("=")[0];
             let valor = String(condicao.split("=")[1]).trim();
 
-            if (resultado[campo] !== valor)
+            if(valor == "null"){
+                if(resultado[campo] != null){
+                    retorno = false;
+                }
+            }else if (!String(resultado[campo]).includes(valor)){
                 retorno = false;
+            }
 
         });
 
