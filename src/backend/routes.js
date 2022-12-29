@@ -349,7 +349,24 @@ async function preencherValorResultado(mapeamento, resultado) {
         }
 
         if (niveis.length === 2) {
-            resolve(resultado[niveis[0]][niveis[1]]);
+            if(String(niveis[0]).includes("[")){
+
+                var chaveValor = String(niveis[0]).split("[");
+                if((chaveValor) && (chaveValor.length > 1)){
+                    var chave = chaveValor[0];
+                    var ultimaCaracterValor = chaveValor[1].indexOf("]")
+                    var valor = String(chaveValor[1]).substring(0, ultimaCaracterValor).replace("]");
+
+                    var lista = resultado[chave];
+                    var primeiro = lista[valor];
+                    var dado = primeiro[niveis[1]];
+
+                    resolve(dado);
+                }
+
+            }else{
+                resolve(resultado[niveis[0]][niveis[1]]);
+            }
         }
 
         if (niveis.length === 3) {
