@@ -4,7 +4,7 @@ import NotFound from './views/NotFound';
 import Configuracao from './views/Configuracao';
 import { ToastProvider } from 'react-toast-notifications'
 
-const Routes = () => {
+function Routes(): any {
     return (
         <>
             <ToastProvider>

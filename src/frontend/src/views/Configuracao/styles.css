@@ -78,3 +78,7 @@ table.table .avatar {
 	border-style: none; 
 	background-color: #06D6A0; 
 }
+
+.btn-crud-config {
+	margin: 0px 7px;
+}
