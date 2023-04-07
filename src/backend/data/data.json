@@ -1,1 +1,74 @@
-[]
+[
+    {
+        "id": 1666965444547,
+        "data": "28/10/2022 10:57:24",
+        "marcaModelo": "309213-I/M.BENZ 516CDISPRINTERC",
+        "chassi": "8AC907155LE186084",
+        "anoFabModelo": "2019/2020",
+        "placa": "",
+        "situacao": "S/1 EMPLAC"
+    },
+    {
+        "id": 1670114418935,
+        "data": "03/12/2022 21:40:18",
+        "marcaModelo": "SCANIA/G 480 B8X4 CS",
+        "chassi": "9BSG8X400J3937317",
+        "anoFabModelo": "null/2018",
+        "placa": null,
+        "situacao": "Restrição 1: SEM RESTRICAO, Restrição 2: SEM RESTRICAO, Restrição 3: SEM RESTRICAO, Restrição 4: SEM RESTRICAO"
+    },
+    {
+        "id": 1670168132385,
+        "data": "04/12/2022 12:35:32",
+        "marcaModelo": "SCANIA/G 480 B8X4 CS",
+        "chassi": "9BSG8X400J3937317",
+        "anoFabModelo": "null/2018",
+        "placa": null,
+        "situacao": "Restrição 1: SEM RESTRICAO, Restrição 2: SEM RESTRICAO, Restrição 3: SEM RESTRICAO, Restrição 4: SEM RESTRICAO"
+    },
+    {
+        "id": 1672331077938,
+        "data": "29/12/2022 13:24:37",
+        "marcaModelo": "MO/JCB 214E",
+        "chassi": "9B9214T24FBDT4487",
+        "anoFabModelo": "2015/2015",
+        "placa": "",
+        "situacao": "S/1 EMPLAC"
+    },
+    {
+        "id": 1680569090441,
+        "data": "03/04/2023 21:44:50",
+        "marcaModelo": "MO/JCB 214E",
+        "chassi": "9B9214T24FBDT4487",
+        "anoFabModelo": "2015/2015",
+        "placa": "       ",
+        "situacao": 89903567
+    },
+    {
+        "id": 1680822365596,
+        "data": "06/04/2023 20:06:05",
+        "marcaModelo": "VW/24.220 EURO3 WORKER",
+        "chassi": "9533782T6ER410511",
+        "anoFabModelo": "2013/2014",
+        "placa": "       ",
+        "situacao": 85211253
+    },
+    {
+        "id": 1680824155002,
+        "data": "06/04/2023 20:35:54",
+        "marcaModelo": "VW/24.220 EURO3 WORKER",
+        "chassi": "9533782T6ER410511",
+        "anoFabModelo": "2013/2014",
+        "placa": "       ",
+        "situacao": 85211253
+    },
+    {
+        "id": 1680833201196,
+        "data": "06/04/2023 23:06:41",
+        "marcaModelo": "VW/24.220 EURO3 WORKER",
+        "chassi": "9533782T6ER410511",
+        "anoFabModelo": "2013/2014",
+        "placa": "       ",
+        "situacao": 85211253
+    }
+]

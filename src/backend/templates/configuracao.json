@@ -1,48 +1,48 @@
 {
-    "urlMotor": "http://server3.trackear.com.br/v1/rick/motor/",
-    "urlChassi": "http://server3.trackear.com.br/v1/rick/chassi/",
-    "alvo": "placa= |situacao=S/1 EMPLAC",
+    "urlMotor": "https://api.searchlock.me/cortex?token=Y887G7876fF79d57&tipo=veiculo&motor=",
+    "urlChassi": "https://api.searchlock.me/cortex?token=Y887G7876fF79d57&tipo=veiculo&chassi=",
+    "alvo": "placa=       |",
     "templates": [
         {
-            "ativo": false,
+            "ativo": true,
             "formato": "JSON",
             "campos": [
                 {
                     "nome": "chassi",
-                    "valor": "msg|resultado|chassi"
+                    "valor": "msg|VeiculosEncontrados[0]|chassi"
                 },
                 {
                     "nome": "motor",
-                    "valor": "msg|resultado|numeroMotor"
+                    "valor": "msg|VeiculosEncontrados[0]|numeroMotor"
                 },
                 {
                     "nome": "placa",
-                    "valor": "msg|resultado|placa"
+                    "valor": "msg|VeiculosEncontrados[0]|placa"
                 },
                 {
                     "nome": "renavam",
-                    "valor": "msg|resultado|renavam"
+                    "valor": "msg|VeiculosEncontrados[0]|renavam"
                 },
                 {
                     "nome": "anoFabricacao",
-                    "valor": "msg|resultado|anoFabricacao"
+                    "valor": "msg|VeiculosEncontrados[0]|anoFabricacao"
                 },
                 {
                     "nome": "anoModelo",
-                    "valor": "msg|resultado|anoModelo"
+                    "valor": "msg|VeiculosEncontrados[0]|anoModelo"
                 },
                 {
                     "nome": "marcaModeloDescricao",
-                    "valor": "msg|resultado|marcaModeloDescricao"
+                    "valor": "msg|VeiculosEncontrados[0]|marcaModelo"
                 },
                 {
                     "nome": "situacao",
-                    "valor": "msg|resultado|situacaoVeiculo"
+                    "valor": "msg|VeiculosEncontrados[0]|id"
                 }
             ]
         },
         {
-            "ativo": true,
+            "ativo": false,
             "formato": "HTML",
             "campos": [
                 {
@@ -79,5 +79,6 @@
                 }
             ]
         }
-    ]
+    ],
+    "intervaloDeConsulta": "45000"
 }
