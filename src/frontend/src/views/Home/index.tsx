@@ -1,4 +1,4 @@
-import React, { CSSProperties, useState } from "react";
+import React, { CSSProperties, useEffect, useState } from "react";
 import { Alert, ProgressBar, Table, Row, Col, Container, Button } from "react-bootstrap";
 import { useToasts } from 'react-toast-notifications';
 import Badge from '@material-ui/core/Badge';
@@ -39,8 +39,8 @@ function Home() {
     const [disabilitarCampos, setDesabilitarCampos] = useState<boolean>(false);
     const [ocupado, setOcupado] = useState<boolean>(false);
     const [showModalResultado, setShowModalResultado] = useState<boolean>(false);
-    const [atualizarResultados, setAtualizarResultados]= useState<boolean>(false);
-    const [qntResultados, setQntResultados]= useState<number>(0);
+    const [atualizarResultados, setAtualizarResultados] = useState<boolean>(false);
+    const [qntResultados, setQntResultados] = useState<number>(0);
     const continuarConsultaRef = React.createRef<HTMLDivElement>();
     const btnIniciarBuscasRef = React.createRef<HTMLButtonElement>();
     const btnPararBuscasRef = React.createRef<HTMLButtonElement>();
@@ -48,6 +48,19 @@ function Home() {
     const btnResultadosRef = React.createRef<HTMLButtonElement>();
     const { addToast } = useToasts();
     const [audio] = useState(new Audio(window.location.origin + '/sounds/Chord.mp3'));
+
+    useEffect(() => {
+        // Api.get("RetornarIntervaloDeBusca")
+        //     .then(resposta => {
+        //         if (resposta.status == 200) {
+        //             Api.defaults.timeout = Number(resposta.data) * 1000;
+        //             console.log(Number(resposta.data) * 1000);
+        //         }
+        //     })
+        //     .catch(erro => {
+        //         Api.defaults.timeout = 90000;
+        //     })
+    }, []);
 
     function obterUltimaNumeracao(value: string): string {
 
@@ -223,7 +236,7 @@ function Home() {
         }
     }
 
-    function changeQntResultados(quantidade:number){
+    function changeQntResultados(quantidade: number) {
         setQntResultados(quantidade);
     }
 

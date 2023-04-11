@@ -7,11 +7,13 @@ import ModalCustom from "../../components/ModalCustom";
 import NavBarCustom from "../../components/NavBarCustom";
 import Api from "../../services/Api";
 import "./styles.css";
+import { stringify } from "querystring";
 
 export interface configuracaoType {
 	urlMotor: string;
 	urlChassi: string;
 	alvo: string;
+	intervaloDeConsulta?: string;
 	templates: templateType[];
 }
 
@@ -51,6 +53,7 @@ function Configuracao() {
 	const [urlMotor, setUrlMotor] = useState<string>("");
 	const [urlChassi, setUrlChassi] = useState<string>("");
 	const [alvo, setAlvo] = useState<string>("");
+	const [intervaloDeConsulta, setIntervaloDeConsulta] = useState("")
 
 	const history = useHistory();
 	const { addToast } = useToasts();
@@ -59,7 +62,6 @@ function Configuracao() {
     const [audio] = useState(new Audio(window.location.origin+'/sounds/Chord.mp3'));
 
 	useEffect(() => {
-
 		Api.get(`templates`)
 			.then(resposta => {
 				resposta.status === 200 && setDados(resposta.data);
@@ -67,6 +69,7 @@ function Configuracao() {
 				setUrlMotor(resposta.data.urlMotor);
 				setUrlChassi(resposta.data.urlChassi);
 				setAlvo(resposta.data.alvo);
+				//setIntervaloDeConsulta(resposta.data.intervaloDeConsulta);
 			})
 			.catch(erro => {
 				setDados(dadosInit);
@@ -193,6 +196,16 @@ function Configuracao() {
 		setModificado(true);
 	}
 
+	// const onChangeIntervaloDeConsulta = (valor: string) => {
+	// 	if (valor.trim() === "") return;
+
+	// 	let config = dados;
+	// 	config.intervaloDeConsulta = valor;
+	// 	setIntervaloDeConsulta(valor);
+	// 	setDados(config);
+	// 	setModificado(true);
+	// }
+
 	const dispararAudio = () => {
 		if(audio.played){
 			audio.pause()
@@ -204,7 +217,7 @@ function Configuracao() {
 	const handleSalvarConfiguracoes = () => {
 		if ((!modificado) && (dados.templates.length === 0)) return;
 
-		Api.post("templetes", dados)
+		Api.post("templates", dados)
 			.then(resposta => {
 				resposta.status === 200 && defaultConfig();
 				addToast(resposta.data.Ok,{ 
@@ -235,8 +248,29 @@ function Configuracao() {
 				onChange={handleAtualizarValor}
 			/>
 			<Container id="container-config">
+				
 				<Row>
 					<Col><h4 className="noselect">Configurações de busca</h4></Col>
+					<Col style={{display: "flex", justifyContent: "end"}}>
+						<Button hidden={modificado}
+							variant="primary"
+							className="btn-crud-config btn-retornar"
+							onClick={handleRetornaParaInicio}>
+							<b>Página Inicial</b>
+						</Button>
+						<Button hidden={!modificado}
+							variant="success"
+							className="btn-crud-config btn-salvar-config"
+							onClick={handleSalvarConfiguracoes}>
+							<b>Salvar</b>
+						</Button>
+						<Button hidden={modoEdicao}
+							variant="info"
+							className="btn-crud-config"
+							onClick={handleModoEdicao}>
+							<b>Editar</b>
+						</Button>
+					</Col>
 				</Row>
 				<br></br>
 				<Row>
@@ -307,6 +341,23 @@ function Configuracao() {
 						</Form.Group>
 					</Col>
 				</Row>
+				{/* <Row>
+					<Col>
+						<Form.Group as={Row} className="mb-3">
+							<Form.Label column sm="2" className="noselect">
+								Intervalo (segundos)
+							</Form.Label>
+							<Col sm="10">
+								<Form.Control
+									disabled={!modoEdicao}
+									placeholder="0"
+									value={intervaloDeConsulta}
+									onChange={(e) => onChangeIntervaloDeConsulta(e.target.value)}
+								/>
+							</Col>
+						</Form.Group>
+					</Col>
+				</Row> */}
 				<br></br>
 				<Row>
 					<Col>
@@ -371,29 +422,6 @@ function Configuracao() {
 						</Row>
 					)
 				}
-				<Row>
-					<Col>
-						<Button hidden={modificado}
-							variant="primary"
-							className="btn-retornar"
-							onClick={handleRetornaParaInicio}>
-							<b>Página Inicial</b>
-						</Button>
-						{' '}
-						<Button hidden={!modificado}
-							variant="success"
-							className="btn-salvar-config"
-							onClick={handleSalvarConfiguracoes}>
-							<b>Salvar</b>
-						</Button>
-						{' '}
-						<Button hidden={modoEdicao}
-							variant="info"
-							onClick={handleModoEdicao}>
-							<b>Editar</b>
-						</Button>
-					</Col>
-				</Row>
 			</Container>
 		</>
 	)

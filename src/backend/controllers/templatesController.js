@@ -1,7 +1,9 @@
+const repositorioDeConfig = require("../repositorio/repositorioDeConfig");
+
 const consultarTempletes = (req, resp) => {
 
 	try {
-		let template = JSON.parse(fs.readFileSync(__dirname + '/templates/configuracao.json', 'utf-8'));
+		let template = repositorioDeConfig.retornarConfiguracoes();
 		resp.status(200).send(template);
 	} catch (error) {
 		resp.status(404).send({ erro: "Arquivo de configuração não encontrada!" })
@@ -17,7 +19,7 @@ const gravarTemplates = (req, resp) => {
 			erro: "Lista de configurações vazia"
 		});
 	try {
-		fs.writeFileSync(__dirname + '/templates/configuracao.json', JSON.stringify(listaDeTemplates, null, 4), 'utf-8');
+		repositorioDeConfig.gravarTemplates(listaDeTemplates);
 		resp.status(200).send({
 			Ok: "Configurações salvas com sucesso!"
 		});

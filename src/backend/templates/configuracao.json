@@ -1,7 +1,7 @@
 {
-    "urlMotor": "https://api.searchlock.me/cortex?token=Y887G7876fF79d57&tipo=veiculo&motor=",
-    "urlChassi": "https://api.searchlock.me/cortex?token=Y887G7876fF79d57&tipo=veiculo&chassi=",
-    "alvo": "placa=       |",
+    "urlMotor": "https://api.searchlock.me/radar?token=Y887G7876fF79d57&tipo=veiculo&motor=",
+    "urlChassi": "https://api.searchlock.me/radar?token=Y887G7876fF79d57&tipo=veiculo&chassi=",
+    "alvo": "placa=|situacao=S/1 PLAC",
     "templates": [
         {
             "ativo": true,
@@ -9,35 +9,35 @@
             "campos": [
                 {
                     "nome": "chassi",
-                    "valor": "msg|VeiculosEncontrados[0]|chassi"
+                    "valor": "msg[0]|chassi"
                 },
                 {
                     "nome": "motor",
-                    "valor": "msg|VeiculosEncontrados[0]|numeroMotor"
+                    "valor": "msg[0]|motor"
                 },
                 {
                     "nome": "placa",
-                    "valor": "msg|VeiculosEncontrados[0]|placa"
+                    "valor": "msg[0]|placa"
                 },
                 {
                     "nome": "renavam",
-                    "valor": "msg|VeiculosEncontrados[0]|renavam"
+                    "valor": "msg[0]|renavam"
                 },
                 {
                     "nome": "anoFabricacao",
-                    "valor": "msg|VeiculosEncontrados[0]|anoFabricacao"
+                    "valor": "msg[0]|anoFabricacao"
                 },
                 {
                     "nome": "anoModelo",
-                    "valor": "msg|VeiculosEncontrados[0]|anoModelo"
+                    "valor": "msg[0]|anoModelo"
                 },
                 {
                     "nome": "marcaModeloDescricao",
-                    "valor": "msg|VeiculosEncontrados[0]|marcaModelo"
+                    "valor": "msg[0]|marcaModelo"
                 },
                 {
                     "nome": "situacao",
-                    "valor": "msg|VeiculosEncontrados[0]|id"
+                    "valor": "msg[0]|situacao"
                 }
             ]
         },

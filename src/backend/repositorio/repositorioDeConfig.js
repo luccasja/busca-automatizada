@@ -1,9 +1,9 @@
 const path = require("path");
 const fs = require('fs');
+const caminhoPastaDados = path.join(__dirname,"..", "/templates/configuracao.json");
 
 const retornarConfiguracoes = () => {
-	let rota = path.join(__dirname,"..", "/templates/configuracao.json");
-	return JSON.parse(fs.readFileSync(rota, 'utf-8'));
+	return JSON.parse(fs.readFileSync(caminhoPastaDados, 'utf-8'));
 }
 
 const buscarConfiguracaoAtiva = () => {
@@ -28,7 +28,12 @@ const buscarConfiguracaoAtiva = () => {
 	return configuracao;
 }
 
+const gravarTemplates = (listaDeTemplates) => {
+	fs.writeFileSync(caminhoPastaDados, JSON.stringify(listaDeTemplates, null, 4), 'utf-8');
+};
+
 module.exports = {
 	retornarConfiguracoes,
-	buscarConfiguracaoAtiva
+	buscarConfiguracaoAtiva,
+	gravarTemplates
 }
