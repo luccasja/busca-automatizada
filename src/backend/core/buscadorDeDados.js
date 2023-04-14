@@ -49,7 +49,7 @@ const buscarPeloTermoFormatoJson = async (resp, path, termo, configuracao) => {
 				if (resposta.data) {
 					let jsonDaResposta = JSON.stringify(resposta.data);
 
-					if (jsonDaResposta.indexOf("ERRO") >= 0) {
+					if (jsonDaResposta.indexOf('"ERROR"') >= 0) {
 						erroNoFornecedorDeDados(resp, termo, jsonDaResposta);
 						return;
 					}
