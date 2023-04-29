@@ -23,7 +23,7 @@ const retornarResultados = (req, resp) => {
 
 const excluirResultados = (req, resp) => {
 	try {
-		escreverDados("[]");
+		escreverDados([]);
 
 		resp.status(200).send({
 			Ok: "Dados removidos com sucesso!"
