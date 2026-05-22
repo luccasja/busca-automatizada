@@ -133,6 +133,9 @@ const extrairResultadoJson = async (configuracao, resposta, condicaoBusca) => {
 
 			dataBusca = new Date().toLocaleString();
 
+			if(!situacao || situacao == "")
+				situacao = "NÂO INFORMADO"
+
 			let resultado = {
 				situacao, renavam, placa, motor, chassi, dataBusca,
 				alvo, condicaoBusca, anoFabricacao, anoModelo, marcaModeloDescricao

@@ -7,14 +7,15 @@ const veiculoEhAlvo = async (resultado, configuracao) => {
 			let campo = condicao.split("=")[0];
 			let valor = String(condicao.split("=")[1]);
 
-			if (valor == "null") {
+			if(valor == '' && String(resultado[campo]).length > 0)
+				retorno = false;
+			else if (valor == "null") {
 				if (resultado[campo] != null) {
 					retorno = false;
 				}
 			} else if (!String(resultado[campo]).includes(valor)) {
 				retorno = false;
 			}
-
 		});
 
 		resolve(retorno);
